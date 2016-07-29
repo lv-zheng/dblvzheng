@@ -1,0 +1,52 @@
+The entire project is written in modern C++ (currently C++ 2014).  It can be
+built into a shared or static linked library with API for external usage.
+
+Modules are listed below.
+
+1. bgroup_query 2. blockio 3. database 4. hash 5. index 6. super
+
+Explanations:
+
+1. bgroup_query
+
+bgroup_query manages `bgroups`.
+
+Dependencies: blockio
+
+
+2. blockio
+
+blockio presents a file as blocks of bytes and provides an interface for block
+I/O.
+
+Dependencies: POSIX
+
+
+3. database
+
+database provides an interface for insertion, query, and deletion of key-value
+pairs for a database. It's the module of the highest level.
+
+Dependencies: blockio bgroup_query index
+
+
+4. hash
+
+hash provides a unified interface for string hashing.
+
+Dependencies: none
+
+
+5. index
+
+index manages index files, for insertion, query, and deletion for keys.
+
+Dependencies: blockio hash
+
+
+6. super
+
+super manages the super blocks of index files, which contains important
+metadata.
+
+Dependencies: none

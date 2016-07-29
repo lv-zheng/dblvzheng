@@ -1,0 +1,36 @@
+Summary
+====
+A database is stored with two files, `index` file and `data` file.
+
+`index` is a large hash table, the chaining of which is separated with linked
+lists. `index` file stores all the key strings and references pointing to
+entries in `data` file.
+
+`data` file contains all the value data. In order to check out a value of a
+specified key, one must query the `index` file first.
+
+Both `index` file and `data` file are block based.
+
+
+Structure of `index` file:
+====
+
+0. header (super block)
+1. head information of all linked lists.
+2. `bgroups` for linked lists of index entries.
+
+Structure of `data` file:
+
+0. `bgroups` of data.
+
+
+What is `bgroup`
+====
+
+A `bgroup` (block group) is a group of blocks with one special block storing
+the Allocation Table (referring to FAT file system) and the other groups
+storing contents. `bgroups` are many `bgroup`s with unified indexing.
+
+An Allocation Table stores whether a block it manages is in use, and if in use,
+the index of the next block of the linked list. With unified indexing, a block
+in one `bgroup` may link to a group in another `bgroup`.

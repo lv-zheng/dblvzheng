@@ -1,6 +1,7 @@
 #ifndef DBLVZHENG_TYPES_HPP
 #define DBLVZHENG_TYPES_HPP
 
+#include <cstdint>
 #include <sys/types.h>
 
 namespace lvzheng {

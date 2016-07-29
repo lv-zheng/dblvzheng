@@ -1,6 +1,7 @@
 #include <cassert>
 #include <iostream>
 
+#include <dblvzheng/bgroup_query.hpp>
 #include <dblvzheng/blockio.hpp>
 
 using namespace lvzheng;
@@ -16,12 +17,20 @@ int main(int argc, char **argv)
 	auto file = db::make_bio(argv[1]);
 	auto stat = file->stat();
 	assert(stat.good); 
-	for (int i = 0; i < 255; i += 2) {
-		buff[0] = i;
-		auto wres = file->write(i, i + 1, buff, i + 2);
-		auto stat = file->stat();
-		assert(wres == i + 2);
-		assert(i + 1 == stat.blockcount);
-	}
+
+	db::bgroup_info bgi;
+	bgi.goffset = 1;
+	bgi.bgroup_size = 512;
+
+	auto printall = [](auto a) {
+		for (auto b : a)
+			std::cout << b << std::endl;
+		std::cout << std::endl;
+	};
+	auto bgq = db::create_bgroup_query(file, bgi);
+
+	auto al = bgq->get_next(0);
+	printall(al);
+
 	return 0;
 }

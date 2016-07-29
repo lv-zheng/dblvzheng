@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include <dblvzheng/blockio.hpp>
+#include <dblvzheng/index.hpp>
 
 using namespace lvzheng;
 
@@ -16,12 +17,18 @@ int main(int argc, char **argv)
 	auto file = db::make_bio(argv[1]);
 	auto stat = file->stat();
 	assert(stat.good); 
-	for (int i = 0; i < 255; i += 2) {
-		buff[0] = i;
-		auto wres = file->write(i, i + 1, buff, i + 2);
-		auto stat = file->stat();
-		assert(wres == i + 2);
-		assert(i + 1 == stat.blockcount);
-	}
+
+	auto printi = [](auto a) {
+		std::cout << "HASH  " << a.hash_value << std::endl;
+		std::cout << "BLKNO " << a.blkno << std::endl;
+		std::cout << "OFFST " << a.byte_offset << std::endl;
+		std::cout << "DENTR " << a.data_entry << std::endl;
+		std::cout << std::endl;
+	};
+
+	db::super_info si;
+	si.hash_modulus = 991;
+	db::mkfs_index(*file, si);
+
 	return 0;
 }

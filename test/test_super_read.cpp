@@ -1,7 +1,10 @@
+#include <array>
 #include <cassert>
 #include <iostream>
+#include <string>
 
 #include <dblvzheng/blockio.hpp>
+#include <dblvzheng/super.hpp>
 
 using namespace lvzheng;
 
@@ -16,12 +19,10 @@ int main(int argc, char **argv)
 	auto file = db::make_bio(argv[1]);
 	auto stat = file->stat();
 	assert(stat.good); 
-	for (int i = 0; i < 255; i += 2) {
-		buff[0] = i;
-		auto wres = file->write(i, i + 1, buff, i + 2);
-		auto stat = file->stat();
-		assert(wres == i + 2);
-		assert(i + 1 == stat.blockcount);
-	}
+
+	std::array<unsigned char, db::consts::default_blocksize> buf;
+	auto rres = file->read(0, buf.data(), 1);
+	auto si = db::super_info::from_super_block(reinterpret_cast<const db::super_block *>(buf.data()));
+
 	return 0;
 }

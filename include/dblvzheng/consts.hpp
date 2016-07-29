@@ -7,8 +7,8 @@ namespace lvzheng {
 namespace db {
 namespace consts {
 
-constexpr blksize_t default_blocksize = 4096;
-constexpr size_t default_bgroup_size = 512;
+constexpr blksize_t default_blocksize = 128;
+constexpr size_t default_bgroup_size = default_blocksize / 8;
 constexpr char super_magic[] = "DBLZ";
 constexpr char system_id[] = "dblz-c++";
 constexpr std::uint32_t version_major = 0;

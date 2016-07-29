@@ -39,6 +39,9 @@ add_executable(test_query test/test_query.cpp)
 add_executable(test_remove test/test_remove.cpp)
 add_executable(test_super_read test/test_super_read.cpp)
 
+add_executable(benchmark_correctness benchmark/benchmark_correctness.cpp)
+add_executable(benchmark_performance benchmark/benchmark_performance.cpp)
+
 add_executable(gen_djbcolli test/gen_djbcolli.cpp)
 
 target_link_libraries(test_bgroup_r dblvzheng_shared)
@@ -51,3 +54,6 @@ target_link_libraries(test_mkfs dblvzheng_shared)
 target_link_libraries(test_query dblvzheng_shared)
 target_link_libraries(test_remove dblvzheng_shared)
 target_link_libraries(test_super_read dblvzheng_shared)
+
+target_link_libraries(benchmark_correctness dblvzheng_shared)
+target_link_libraries(benchmark_performance dblvzheng_shared)

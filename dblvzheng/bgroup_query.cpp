@@ -138,7 +138,7 @@ std::vector<std::uint64_t> IMPL::try_alloc(std::uint64_t bgno, size_t n)
 		_bio->write(bg_off, 0, buf.data(), _blocksize);
 	}
 
-	for(auto b : ans)
+	//for(auto b : ans)
 		//std::cout << "ALLOC " << b << std::endl;
 	//std::cout << std::endl;
 

@@ -111,6 +111,7 @@ index_entry_info IMPL::_work(const std::string& s, Operation op, std::uint64_t d
 	blks.push_back(head);
 	while (1) {
 		for (auto blk : blks) {
+			//std::cout << "BLK " << blk << std::endl;
 			if (blk == bgroup_query::eolist)
 				goto not_found;
 			ans.blkno = blk;

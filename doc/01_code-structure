@@ -1,9 +1,24 @@
 The entire project is written in modern C++ (currently C++ 2014).  It can be
 built into a shared or static linked library with API for external usage.
 
+
+Directory structure:
+
+benchmark/	benchmark programs
+dblvzheng/	C++ source files
+include/	header files
+result/		benchmark result
+test/		unit tests
+
+
 Modules are listed below.
 
-1. bgroup_query 2. blockio 3. database 4. hash 5. index 6. super
+1. bgroup_query
+2. blockio
+3. database
+4. hash
+5. index
+6. super
 
 Explanations:
 

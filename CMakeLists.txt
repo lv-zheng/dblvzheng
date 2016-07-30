@@ -42,6 +42,9 @@ add_executable(test_super_read test/test_super_read.cpp)
 add_executable(benchmark_correctness benchmark/benchmark_correctness.cpp)
 add_executable(benchmark_performance benchmark/benchmark_performance.cpp)
 
+add_executable(dblvzheng_cli demo/dblvzheng_cli.cpp)
+add_executable(dblvzheng_mkfs demo/dblvzheng_mkfs.cpp)
+
 add_executable(gen_djbcolli test/gen_djbcolli.cpp)
 
 target_link_libraries(test_bgroup_r dblvzheng_shared)
@@ -57,3 +60,6 @@ target_link_libraries(test_super_read dblvzheng_shared)
 
 target_link_libraries(benchmark_correctness dblvzheng_shared)
 target_link_libraries(benchmark_performance dblvzheng_shared)
+
+target_link_libraries(dblvzheng_cli dblvzheng_shared)
+target_link_libraries(dblvzheng_mkfs dblvzheng_shared)
